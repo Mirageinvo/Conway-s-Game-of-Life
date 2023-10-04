@@ -2,31 +2,24 @@
 
 int RunLife()
 {
-    // create the window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Game of life");
+    // Creating the window
+    WindowWrapped window(800, 600, "Game of life");
 
-    while (window.isOpen())
+    while (isOpenWrapped(window))
     {
         // check all the window's events that were triggered since the last iteration of the loop
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            switch(event.type) {
-                case sf::Event::KeyPressed:
-                case sf::Event::Closed:
-                    window.close();
-                    break;
-            }
-        }
+        checkEventsWrapped(window);
 
         // clear the window with black color
-        window.clear(sf::Color::Black);
+        clearWrapped(window, ColorWrapped{125, 125, 125});
 
         // draw everything here...
         // window.draw(...);
 
         // end the current frame
-        window.display();
+        displayWrapped(window);
     }
+
+    delete window.window;
     return 0;
 }
