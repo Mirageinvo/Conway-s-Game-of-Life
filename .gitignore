@@ -1,3 +1,7 @@
+#Folders
+build/
+third-party/
+
 # Prerequisites
 *.d
 
