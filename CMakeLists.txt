@@ -24,5 +24,5 @@ if (NOT INSTALL_RES EQUAL 0)
 endif()
 
 add_subdirectory(entry)
-add_subdirectory(game_of_life/wrapped)
+add_subdirectory(game_of_life)
 add_subdirectory(${PROJECT_THIRD_PARTY}/SFML)
