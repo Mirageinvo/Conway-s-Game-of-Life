@@ -14,14 +14,12 @@ extern "C" {
     };
 
     int isOpenWrapped(WindowWrapped);
-    int RandWrapped();
+    int randWrapped();
     void checkEventsWrapped(WindowWrapped);
     void clearWrapped(WindowWrapped, ColorWrapped);
     void displayWrapped(WindowWrapped);
+    void setCellWrapped(/*TO BE DONE*/);
 
-    // void FlushWrapped();
-    // void BkptWrapped();
-    // void SetPixelWrapped(int x, int y, int argb);
 } // extern "C"
 
 #endif // GAME_OF_LIFE_WRAPPED_WRAPPED_HPP

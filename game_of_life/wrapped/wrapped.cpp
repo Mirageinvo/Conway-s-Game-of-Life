@@ -40,7 +40,5 @@ extern "C" {
     {
         w.window->display();
     }
-    // void FlushWrapped();
-    // void BkptWrapped();
-    // void SetPixelWrapped(int x, int y, int argb);
+
 } // extern "C"
