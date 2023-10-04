@@ -23,5 +23,6 @@ if (NOT INSTALL_RES EQUAL 0)
 	message(FATAL_ERROR "Unable to install required third-party dependencies")
 endif()
 
-add_subdirectory(${PROJECT_THIRD_PARTY}/SFML)
 add_subdirectory(entry)
+add_subdirectory(game_of_life/wrapped)
+add_subdirectory(${PROJECT_THIRD_PARTY}/SFML)
