@@ -1,1 +1,0 @@
-SFML,https://github.com/SFML/SFML.git,2.6.x
