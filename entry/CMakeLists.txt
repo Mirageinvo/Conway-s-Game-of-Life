@@ -1,11 +1,11 @@
 set(SOURCES
-    entry.cpp
-    ${PROJECT_ROOT}/game_of_life/game_of_life.cpp
+    entry.c
+    ${PROJECT_ROOT}/game_of_life/game_of_life.c
 )
 
 add_executable(graphics ${SOURCES})
-target_link_libraries(graphics PUBLIC wrapped)
-target_include_directories(graphics PUBLIC ${PROJECT_ROOT}/game_of_life)
+target_link_libraries(graphics PUBLIC SDL2)
+target_include_directories(graphics PUBLIC ${PROJECT_ROOT}/entry)
 
 add_custom_target(
     run_graphics
