@@ -1,10 +1,10 @@
-; ModuleID = '/home/mirageinv/code/Conway-s-Game-of-Life/game_of_life/game_of_life.c'
-source_filename = "/home/mirageinv/code/Conway-s-Game-of-Life/game_of_life/game_of_life.c"
+; ModuleID = '../game_of_life/game_of_life.c'
+source_filename = "../game_of_life/game_of_life.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-pc-linux-gnu"
 
-@help_arr_x = internal global [8 x i32] [i32 -1, i32 -1, i32 0, i32 1, i32 1, i32 1, i32 0, i32 -1], align 16
-@help_arr_y = internal global [8 x i32] [i32 0, i32 1, i32 1, i32 1, i32 0, i32 -1, i32 -1, i32 -1], align 16
+@__const.NeighborNum.help_arr_x = private unnamed_addr constant [8 x i32] [i32 -1, i32 -1, i32 0, i32 1, i32 1, i32 1, i32 0, i32 -1], align 16
+@__const.NeighborNum.help_arr_y = private unnamed_addr constant [8 x i32] [i32 0, i32 1, i32 1, i32 1, i32 0, i32 -1, i32 -1, i32 -1], align 16
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define dso_local i32 @GoodInds(i32 %0, i32 %1) #0 {
@@ -42,76 +42,85 @@ define dso_local i32 @NeighborNum(i32 %0, i32 %1, [60 x [40 x i32]]* %2) #0 {
   %4 = alloca i32, align 4
   %5 = alloca i32, align 4
   %6 = alloca [60 x [40 x i32]]*, align 8
-  %7 = alloca i32, align 4
-  %8 = alloca i32, align 4
+  %7 = alloca [8 x i32], align 16
+  %8 = alloca [8 x i32], align 16
   %9 = alloca i32, align 4
   %10 = alloca i32, align 4
   %11 = alloca i32, align 4
   %12 = alloca i32, align 4
+  %13 = alloca i32, align 4
+  %14 = alloca i32, align 4
   store i32 %0, i32* %4, align 4
   store i32 %1, i32* %5, align 4
   store [60 x [40 x i32]]* %2, [60 x [40 x i32]]** %6, align 8
-  store i32 0, i32* %9, align 4
-  store i32 0, i32* %10, align 4
-  br label %13
+  %15 = bitcast [8 x i32]* %7 to i8*
+  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 16 %15, i8* align 16 bitcast ([8 x i32]* @__const.NeighborNum.help_arr_x to i8*), i64 32, i1 false)
+  %16 = bitcast [8 x i32]* %8 to i8*
+  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 16 %16, i8* align 16 bitcast ([8 x i32]* @__const.NeighborNum.help_arr_y to i8*), i64 32, i1 false)
+  store i32 0, i32* %11, align 4
+  store i32 0, i32* %12, align 4
+  br label %17
 
-13:                                               ; preds = %47, %3
-  %14 = load i32, i32* %10, align 4
-  %15 = icmp slt i32 %14, 8
-  br i1 %15, label %16, label %50
+17:                                               ; preds = %51, %3
+  %18 = load i32, i32* %12, align 4
+  %19 = icmp slt i32 %18, 8
+  br i1 %19, label %20, label %54
 
-16:                                               ; preds = %13
-  %17 = load i32, i32* %4, align 4
-  %18 = load i32, i32* %10, align 4
-  %19 = sext i32 %18 to i64
-  %20 = getelementptr inbounds [8 x i32], [8 x i32]* @help_arr_x, i64 0, i64 %19
-  %21 = load i32, i32* %20, align 4
-  %22 = add nsw i32 %17, %21
-  store i32 %22, i32* %11, align 4
-  %23 = load i32, i32* %5, align 4
-  %24 = load i32, i32* %10, align 4
-  %25 = sext i32 %24 to i64
-  %26 = getelementptr inbounds [8 x i32], [8 x i32]* @help_arr_y, i64 0, i64 %25
-  %27 = load i32, i32* %26, align 4
-  %28 = add nsw i32 %23, %27
-  store i32 %28, i32* %12, align 4
-  %29 = load i32, i32* %11, align 4
-  %30 = load i32, i32* %12, align 4
-  %31 = call i32 @GoodInds(i32 %29, i32 %30)
-  %32 = icmp ne i32 %31, 0
-  br i1 %32, label %33, label %46
+20:                                               ; preds = %17
+  %21 = load i32, i32* %4, align 4
+  %22 = load i32, i32* %12, align 4
+  %23 = sext i32 %22 to i64
+  %24 = getelementptr inbounds [8 x i32], [8 x i32]* %7, i64 0, i64 %23
+  %25 = load i32, i32* %24, align 4
+  %26 = add nsw i32 %21, %25
+  store i32 %26, i32* %13, align 4
+  %27 = load i32, i32* %5, align 4
+  %28 = load i32, i32* %12, align 4
+  %29 = sext i32 %28 to i64
+  %30 = getelementptr inbounds [8 x i32], [8 x i32]* %8, i64 0, i64 %29
+  %31 = load i32, i32* %30, align 4
+  %32 = add nsw i32 %27, %31
+  store i32 %32, i32* %14, align 4
+  %33 = load i32, i32* %13, align 4
+  %34 = load i32, i32* %14, align 4
+  %35 = call i32 @GoodInds(i32 %33, i32 %34)
+  %36 = icmp ne i32 %35, 0
+  br i1 %36, label %37, label %50
 
-33:                                               ; preds = %16
-  %34 = load [60 x [40 x i32]]*, [60 x [40 x i32]]** %6, align 8
-  %35 = load i32, i32* %11, align 4
-  %36 = sext i32 %35 to i64
-  %37 = getelementptr inbounds [60 x [40 x i32]], [60 x [40 x i32]]* %34, i64 0, i64 %36
-  %38 = load i32, i32* %12, align 4
-  %39 = sext i32 %38 to i64
-  %40 = getelementptr inbounds [40 x i32], [40 x i32]* %37, i64 0, i64 %39
-  %41 = load i32, i32* %40, align 4
-  %42 = icmp eq i32 %41, 1
-  br i1 %42, label %43, label %46
+37:                                               ; preds = %20
+  %38 = load [60 x [40 x i32]]*, [60 x [40 x i32]]** %6, align 8
+  %39 = load i32, i32* %13, align 4
+  %40 = sext i32 %39 to i64
+  %41 = getelementptr inbounds [60 x [40 x i32]], [60 x [40 x i32]]* %38, i64 0, i64 %40
+  %42 = load i32, i32* %14, align 4
+  %43 = sext i32 %42 to i64
+  %44 = getelementptr inbounds [40 x i32], [40 x i32]* %41, i64 0, i64 %43
+  %45 = load i32, i32* %44, align 4
+  %46 = icmp eq i32 %45, 1
+  br i1 %46, label %47, label %50
 
-43:                                               ; preds = %33
-  %44 = load i32, i32* %9, align 4
-  %45 = add nsw i32 %44, 1
-  store i32 %45, i32* %9, align 4
-  br label %46
-
-46:                                               ; preds = %43, %33, %16
-  br label %47
-
-47:                                               ; preds = %46
-  %48 = load i32, i32* %10, align 4
+47:                                               ; preds = %37
+  %48 = load i32, i32* %11, align 4
   %49 = add nsw i32 %48, 1
-  store i32 %49, i32* %10, align 4
-  br label %13
+  store i32 %49, i32* %11, align 4
+  br label %50
 
-50:                                               ; preds = %13
-  %51 = load i32, i32* %9, align 4
-  ret i32 %51
+50:                                               ; preds = %47, %37, %20
+  br label %51
+
+51:                                               ; preds = %50
+  %52 = load i32, i32* %12, align 4
+  %53 = add nsw i32 %52, 1
+  store i32 %53, i32* %12, align 4
+  br label %17
+
+54:                                               ; preds = %17
+  %55 = load i32, i32* %11, align 4
+  ret i32 %55
 }
+
+; Function Attrs: argmemonly nounwind willreturn
+declare void @llvm.memcpy.p0i8.p0i8.i64(i8* noalias nocapture writeonly, i8* noalias nocapture readonly, i64, i1 immarg) #1
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define dso_local void @prepNextIter([60 x [40 x i32]]* %0, [60 x [40 x i32]]* %1) #0 {
@@ -496,14 +505,15 @@ define dso_local void @app() #0 {
   ret void
 }
 
-declare dso_local i32 @simRand(...) #1
+declare dso_local i32 @simRand(...) #2
 
-declare dso_local void @simPutPixel(i32, i32, i32) #1
+declare dso_local void @simPutPixel(i32, i32, i32) #2
 
-declare dso_local void @simFlush(...) #1
+declare dso_local void @simFlush(...) #2
 
 attributes #0 = { noinline nounwind optnone uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "frame-pointer"="all" "less-precise-fpmad"="false" "min-legal-vector-width"="0" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #1 = { "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "frame-pointer"="all" "less-precise-fpmad"="false" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #1 = { argmemonly nounwind willreturn }
+attributes #2 = { "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "frame-pointer"="all" "less-precise-fpmad"="false" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
 
 !llvm.module.flags = !{!0}
 !llvm.ident = !{!1}

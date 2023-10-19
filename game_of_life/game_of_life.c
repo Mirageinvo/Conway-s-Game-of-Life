@@ -1,8 +1,5 @@
 #include "entry.h"
 
-static int help_arr_x[] = {-1, -1, 0, 1, 1, 1, 0, -1};
-static int help_arr_y[] = {0, 1, 1, 1, 0, -1, -1, -1};
-
 int GoodInds(int x, int y)
 {
     return x >= 0 && y >= 0 && x < NUM_CELLS_X && y < NUM_CELLS_Y;
@@ -10,6 +7,8 @@ int GoodInds(int x, int y)
 
 int NeighborNum(int ind_x, int ind_y, int (*cells)[NUM_CELLS_X][NUM_CELLS_Y])
 {
+    int help_arr_x[] = {-1, -1, 0, 1, 1, 1, 0, -1};
+    int help_arr_y[] = {0, 1, 1, 1, 0, -1, -1, -1};
     int new_ind_x, new_ind_y;
     int result = 0;
     for (int i = 0; i < 8; ++i) {
