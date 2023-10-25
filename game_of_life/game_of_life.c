@@ -1,4 +1,5 @@
-#include "entry.h"
+#include "../entry/entry.h"
+#include "../llvm-instrumental-pass/log.c"
 
 int GoodInds(int x, int y)
 {
